@@ -8,6 +8,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.svm import SVC, LinearSVC
 from sklearn import metrics
 from scipy.sparse import hstack
+from sklearn.utils import class_weight
 from tensorflow.keras.callbacks import ModelCheckpoint
 
 ################
@@ -32,6 +33,8 @@ dev_polarities = get_polarity_counts(dev_tweets, lex_dict)
 # Get one hot labels for dnn
 train_labels_onehot = get_one_hot_labels(train_labels)
 dev_labels_onehot = get_one_hot_labels(dev_labels)
+# Get class weight for a "balanced" training for dnn
+class_weights = class_weight.compute_class_weight("balanced", np.unique(train_labels), train_labels)
 
 ######################
 # Experiments config #
@@ -56,7 +59,7 @@ classifiers = kernel_types + ["dnn"]
 C = 0.1
 # DNN train parameters
 batch_size = 64
-epochs = 100
+epochs = 400
 # Auxiliary variables to store the best model
 best_config = []
 best_acc = 0
@@ -123,7 +126,7 @@ for vectorizer_type in vectorizer_types:
             # Callback to store best model
             best_model_path = f"saved_models/{vectorizer_name}_bestloss"
             ckpt_callback = ModelCheckpoint(best_model_path, monitor="val_loss", verbose=1, save_best_only=True, save_weights_only=True)
-            classifier.fit(train_vectors, train_labels_onehot, batch_size, epochs, validation_data=(dev_vectors, dev_labels_onehot), callbacks=[ckpt_callback])
+            classifier.fit(train_vectors, train_labels_onehot, batch_size, epochs, validation_data=(dev_vectors, dev_labels_onehot), callbacks=[ckpt_callback], class_weight=class_weights)
         else:
             classifier.fit(train_vectors, train_labels)
 
