@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+import numpy as np
 
 # Function to parse data from XML
 def parse_xml_data(path):
@@ -39,6 +40,21 @@ def get_polarity_counts(tweets, lex_dict):
         pol_counts.append(aux_counts)
 
     return pol_counts
+
+
+def get_one_hot_labels(labels):
+    one_hot_labels = []
+    for label in labels:
+        if label == "P":
+            one_hot_labels.append([1, 0, 0, 0])
+        elif label == "N":
+            one_hot_labels.append([0, 1, 0, 0])
+        elif label == "NEU":
+            one_hot_labels.append([0, 0, 1, 0])
+        elif label == "NONE":
+            one_hot_labels.append([0, 0, 0, 1])
+
+    return np.array(one_hot_labels)
 
 if __name__ == "__main__":
 
