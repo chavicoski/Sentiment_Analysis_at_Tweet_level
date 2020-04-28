@@ -1,0 +1,68 @@
+
+Results of vectorizer CountVectorizer with kernel type linear:
+acc   = 0.5553359683794467
+macro = (0.4121340960626675, 0.3952467928396861, 0.3815040798935746, None)
+
+Results of vectorizer CountVectorizer with kernel type poly:
+acc   = 0.43478260869565216
+macro = (0.23356573705179284, 0.2520635756937127, 0.15742891816920945, None)
+
+Results of vectorizer CountVectorizer with kernel type rbf:
+acc   = 0.43280632411067194
+macro = (0.10820158102766798, 0.25, 0.1510344827586207, None)
+
+Results of vectorizer CountVectorizer with kernel type sigmoid:
+acc   = 0.45849802371541504
+macro = (0.2857142857142857, 0.27221636810677907, 0.19853889127632146, None)
+
+Results of vectorizer HashingVectorizer with kernel type linear:
+acc   = 0.5434782608695652
+macro = (0.6002408881441139, 0.36472769003173044, 0.33186443932411674, None)
+
+Results of vectorizer HashingVectorizer with kernel type poly:
+acc   = 0.43280632411067194
+macro = (0.10820158102766798, 0.25, 0.1510344827586207, None)
+
+Results of vectorizer HashingVectorizer with kernel type rbf:
+acc   = 0.43280632411067194
+macro = (0.10841584158415841, 0.25, 0.15124309392265195, None)
+
+Results of vectorizer HashingVectorizer with kernel type sigmoid:
+acc   = 0.47035573122529645
+macro = (0.29864176570458406, 0.28229276431331224, 0.21639646164989443, None)
+
+Results of vectorizer TfidfTransformer with kernel type linear:
+acc   = 0.5592885375494071
+macro = (0.33788054493407715, 0.3646750399401747, 0.3225179723985937, None)
+
+Results of vectorizer TfidfTransformer with kernel type poly:
+acc   = 0.43280632411067194
+macro = (0.10820158102766798, 0.25, 0.1510344827586207, None)
+
+Results of vectorizer TfidfTransformer with kernel type rbf:
+acc   = 0.43280632411067194
+macro = (0.10820158102766798, 0.25, 0.1510344827586207, None)
+
+Results of vectorizer TfidfTransformer with kernel type sigmoid:
+acc   = 0.44664031620553357
+macro = (0.3098790322580645, 0.26167896030909726, 0.1765439379897211, None)
+
+Results of vectorizer TfidfVectorizer with kernel type linear:
+acc   = 0.5592885375494071
+macro = (0.33788054493407715, 0.3646750399401747, 0.3225179723985937, None)
+
+Results of vectorizer TfidfVectorizer with kernel type poly:
+acc   = 0.43280632411067194
+macro = (0.10820158102766798, 0.25, 0.1510344827586207, None)
+
+Results of vectorizer TfidfVectorizer with kernel type rbf:
+acc   = 0.43280632411067194
+macro = (0.10820158102766798, 0.25, 0.1510344827586207, None)
+
+Results of vectorizer TfidfVectorizer with kernel type sigmoid:
+acc   = 0.44664031620553357
+macro = (0.3098790322580645, 0.26167896030909726, 0.1765439379897211, None)
+
+The best model config with 0.5592885375494071 of accuracy is:
+	vectorizer = TfidfTransformer
+	kernel type = linear
