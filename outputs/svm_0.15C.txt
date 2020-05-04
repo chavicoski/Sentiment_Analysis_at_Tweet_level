@@ -1,0 +1,74 @@
+
+Results of vectorizer CountVectorizer using a SVM with kernel type linear:
+acc   = 0.5434782608695652
+macro = (0.4015816858172806, 0.39955123032487627, 0.3919191567562924, None)
+
+Results of vectorizer CountVectorizer using a SVM with kernel type poly:
+acc   = 0.44664031620553357
+macro = (0.2973178137651822, 0.26213997190024585, 0.17895962732919252, None)
+
+Results of vectorizer CountVectorizer using a SVM with kernel type rbf:
+acc   = 0.5158102766798419
+macro = (0.30159922806795536, 0.3223788198103267, 0.27522972647145505, None)
+
+Results of vectorizer CountVectorizer using a SVM with kernel type sigmoid:
+acc   = 0.5632411067193676
+macro = (0.29571228910851555, 0.3659114857744995, 0.31815190168326635, None)
+
+Results of vectorizer HashingVectorizer using a SVM with kernel type linear:
+acc   = 0.5711462450592886
+macro = (0.4337877328195247, 0.40502077430980965, 0.3848675695097515, None)
+
+Results of vectorizer HashingVectorizer using a SVM with kernel type poly:
+acc   = 0.49209486166007904
+macro = (0.30485906260242546, 0.3031480505795574, 0.252611596054219, None)
+
+Results of vectorizer HashingVectorizer using a SVM with kernel type rbf:
+acc   = 0.549407114624506
+macro = (0.28913100445483686, 0.35653758342114505, 0.31006558028616854, None)
+
+Results of vectorizer HashingVectorizer using a SVM with kernel type sigmoid:
+acc   = 0.4288537549407115
+macro = (0.23149765118837645, 0.3025772743238496, 0.24717659137577003, None)
+
+Results of vectorizer TfidfTransformer using a SVM with kernel type linear:
+acc   = 0.5652173913043478
+macro = (0.41566542577943233, 0.3900332945631606, 0.3619081093895287, None)
+
+Results of vectorizer TfidfTransformer using a SVM with kernel type poly:
+acc   = 0.49604743083003955
+macro = (0.31300942435048396, 0.3054311556023885, 0.2548076923076923, None)
+
+Results of vectorizer TfidfTransformer using a SVM with kernel type rbf:
+acc   = 0.5513833992094862
+macro = (0.2915470737913486, 0.35767913593256057, 0.3113832869930431, None)
+
+Results of vectorizer TfidfTransformer using a SVM with kernel type sigmoid:
+acc   = 0.41304347826086957
+macro = (0.21788033395176254, 0.2869906919564454, 0.23844775654341502, None)
+
+Results of vectorizer TfidfVectorizer using a SVM with kernel type linear:
+acc   = 0.5652173913043478
+macro = (0.41566542577943233, 0.3900332945631606, 0.3619081093895287, None)
+
+Results of vectorizer TfidfVectorizer using a SVM with kernel type poly:
+acc   = 0.49604743083003955
+macro = (0.31300942435048396, 0.3054311556023885, 0.2548076923076923, None)
+
+Results of vectorizer TfidfVectorizer using a SVM with kernel type rbf:
+acc   = 0.5513833992094862
+macro = (0.2915470737913486, 0.35767913593256057, 0.3113832869930431, None)
+
+Results of vectorizer TfidfVectorizer using a SVM with kernel type sigmoid:
+acc   = 0.41304347826086957
+macro = (0.21788033395176254, 0.2869906919564454, 0.23844775654341502, None)
+
+The best model config by accuracy with is:
+	vectorizer = HashingVectorizer
+	classifier = linear
+	results: accuracy=0.5711462450592886 - macro=(0.4337877328195247, 0.40502077430980965, 0.3848675695097515, None)
+
+The best model config by macro with is:
+	vectorizer = HashingVectorizer
+	classifier = linear
+	results: accuracy=0.5711462450592886 - macro=(0.4337877328195247, 0.40502077430980965, 0.3848675695097515, None)

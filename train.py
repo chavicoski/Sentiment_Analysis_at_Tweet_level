@@ -46,23 +46,26 @@ tokenizer = TweetTokenizer(preserve_case=False, reduce_len=True, strip_handles=F
 tok_func = lambda s: tokenizer.tokenize(s)
 
 # Auxiliary variables to store the best config
-best_accuracy = 0
-best_macro = None
-best_config = []
+# By best accuracy
+bestacc_accuracy = 0
+bestacc_macro = 0
+bestacc_config = []
+# By best macro
+bestmacro_accuracy = 0
+bestmacro_macro = 0
+bestmacro_config = []
+aux_best_macro = 0
 # Range of different vectorizers
 vectorizer_types = range(4)
 # Kernel types for SVM classifier
 kernel_types = ["linear", "poly", "rbf", "sigmoid"]
 # Create the list of classifiers. All the SVM variants plus DNN
-classifiers = kernel_types + ["dnn"]
+classifiers = kernel_types  + ["dnn"]
 # Regularization param for SVM classifier
 C = 0.1
 # DNN train parameters
 batch_size = 64
 epochs = 400
-# Auxiliary variables to store the best model
-best_config = []
-best_acc = 0
 
 '''
 Loop for trying diferent combinations if vectorizers and classifiers
@@ -79,7 +82,7 @@ for vectorizer_type in vectorizer_types:
             vectorizer = CountVectorizer(tokenizer=tok_func, ngram_range=(1,1))
 
         elif vectorizer_type == 1:
-            if classifier_type == "dnn": continue
+            if classifier_type == "dnn": continue  # This vectorizer does not work with dnn
             vectorizer_name = "HashingVectorizer"
             vectorizer = HashingVectorizer(tokenizer=tok_func, ngram_range=(1,1))
 
@@ -94,7 +97,7 @@ for vectorizer_type in vectorizer_types:
 
         # Apply vectorizer to train data
         train_vectors = vectorizer.fit_transform(train_tweets)
-        # Apply vectorizer to train data
+        # Apply vectorizer to development data
         dev_vectors = vectorizer.transform(dev_tweets)
 
         # Add the polarity counts to the vectors
@@ -157,17 +160,27 @@ for vectorizer_type in vectorizer_types:
             print(f"\nResults of vectorizer {vectorizer_name} using a SVM with kernel type {classifier_type}:")
         print(f"acc   = {accuracy}")
         print(f"macro = {macro}")
-        #print(f"micro = {metrics.precision_recall_fscore_support(dev_labels, dev_preds, average='micro')}")
-        #print(metrics.classification_report(dev_labels, dev_preds))
 
-        # Check if we get a new best model to store it
-        if accuracy > best_acc:
-            best_config = [vectorizer_name, classifier_type]
-            best_acc = accuracy
-            best_macro = macro
+        # Check if we get a new best model(by accuracy) to store it
+        if accuracy > bestacc_accuracy:
+            bestacc_config = [vectorizer_name, classifier_type]
+            bestacc_accuracy = accuracy
+            bestacc_macro = macro
 
-# Show the best model
-print("\nThe best model config with is:")
-print(f"\tvectorizer = {best_config[0]}")
-print(f"\tclassifier = {best_config[1]}")
-print(f"\tresults: accuracy={best_acc} - macro={best_macro}")
+        # Check if we get a new best model(by macro) to store it
+        if macro[0] > aux_best_macro:
+            bestmacro_config = [vectorizer_name, classifier_type]
+            bestmacro_accuracy = accuracy
+            bestmacro_macro = macro
+            aux_best_macro = macro[0]
+
+# Show the best models
+print("\nThe best model config by accuracy with is:")
+print(f"\tvectorizer = {bestacc_config[0]}")
+print(f"\tclassifier = {bestacc_config[1]}")
+print(f"\tresults: accuracy={bestacc_accuracy} - macro={bestacc_macro}")
+
+print("\nThe best model config by macro with is:")
+print(f"\tvectorizer = {bestmacro_config[0]}")
+print(f"\tclassifier = {bestmacro_config[1]}")
+print(f"\tresults: accuracy={bestmacro_accuracy} - macro={bestmacro_macro}")
